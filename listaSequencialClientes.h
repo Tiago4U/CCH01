@@ -11,7 +11,7 @@ typedef struct{
 
 ListaSequencialClientes* criarLista();
 void imprimirDadosCliente(Cliente* cliente);
-int inserirCliente(ListaSequencialClientes* lista, Cliente cliente);
+int inserirCliente(ListaSequencialClientes* lista, Cliente cliente, int posicao);
 int buscarClientePorCpf(ListaSequencialClientes* lista, int cpf, Cliente* clienteRetornado);
 
 //implementar

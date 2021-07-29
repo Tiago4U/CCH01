@@ -20,15 +20,33 @@ ListaSequencialClientes* criarLista(){
 }
 
 //Inserir cliente a lista de usuario
-int inserirCliente(ListaSequencialClientes* lista, Cliente cliente){
+int inserirCliente(ListaSequencialClientes* lista, Cliente cliente, int posicao){
 	//TODO: verificar se lista cheia
 	if(lista == NULL){
 		return 0;
 	}
-	printf("Inserindo cliente na posicao: %d\n", lista->index);
-	lista->dados[lista->index] = cliente;
-	lista->index++;
-	return 1;
+
+	//para informar a posicao utilizamos -1 para inserir no final, 0 para inserir no inicio e demais valores para posicao
+	//Inserir na ultima posicao
+	if(posicao = -1 ){
+        printf("Inserindo cliente na posicao: %d\n", lista->index);
+        lista->dados[lista->index] = cliente;
+        lista->index++;
+        return 1;
+	}/*#IMPLEMENTAR
+	else if(posicao = 0){
+	    printf("Inserindo cliente na posicao: %d\n", lista->index);
+        lista->dados[lista->index] = cliente;
+        lista->index++;
+        return 1;
+	}else{
+        printf("Inserindo cliente na posicao: %d\n", lista->index);
+        lista->dados[lista->index] = cliente;
+        lista->index++;
+        return 1;
+	}*/
+
+
 }
 
 //Busca usuario na lista
