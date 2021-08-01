@@ -1,12 +1,30 @@
 #include "listaSequencialClientes.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+Cliente clienteNovo;
 
 //Impressao de dados por usuario
 void imprimirDadosCliente(Cliente* cliente){
-	printf("Nome: %s\n", cliente->nome);
 	printf("ID: %d\n", cliente->id);
+	printf("Nome: %s\n", cliente->nome);
 	printf("CPF: %d\n", cliente->cpf);
+}
+
+int criarCliente(Cliente* cliente){
+    char nome[150];
+    printf("Informe o Nome:\n");
+    scanf("%s", nome);
+    strcpy(cliente->nome, nome);
+
+    printf("Informe o ID:\n");
+    scanf("%d", &cliente->id);
+
+    printf("Informe o CPF:\n");
+    scanf("%d", &cliente->cpf);
+
+    return 1;
 }
 
 //Criar lista de usuarios
@@ -20,18 +38,20 @@ ListaSequencialClientes* criarLista(){
 }
 
 //Inserir cliente a lista de usuario
-int inserirCliente(ListaSequencialClientes* lista, Cliente cliente, int posicao){
+int inserirCliente(ListaSequencialClientes* lista, int posicao){
 	//TODO: verificar se lista cheia
 	if(lista == NULL){
+        printf("A lista de clientes esta cheia. ");
 		return 0;
 	}
 
+    criarCliente(&clienteNovo);
+
 	//para informar a posicao utilizamos -1 para inserir no final, 0 para inserir no inicio e demais valores para posicao
 	//Inserir na ultima posicao
-
 	if(posicao == -1 ){
         printf("Inserindo cliente na posicao: %d\n", lista->index);
-        lista->dados[lista->index] = cliente;
+        lista->dados[lista->index] = clienteNovo;
         lista->index++;
         return 1;
 	}
@@ -44,7 +64,7 @@ int inserirCliente(ListaSequencialClientes* lista, Cliente cliente, int posicao)
             //printf("posicao %d recebe dados da posicao %d\n", i+1, i);
         }
 
-        lista->dados[0] = cliente;
+        lista->dados[0] = clienteNovo;
         lista->index++;
         return 1;
 	}else{
@@ -55,7 +75,7 @@ int inserirCliente(ListaSequencialClientes* lista, Cliente cliente, int posicao)
             //printf("posicao %d recebe dados da posicao %d\n", i+1, i);
         }
 
-        lista->dados[posicao] = cliente;
+        lista->dados[posicao] = clienteNovo;
         lista->index++;
         return 1;
 	}
@@ -78,3 +98,31 @@ int buscarClientePorCpf(ListaSequencialClientes* lista, Cliente* clienteRetornad
 	}
 	return 0;
 }
+
+//Remover dados cliente
+int removerDadosCliente(ListaSequencialClientes* lista, Cliente* cliente){
+	int cpf, position=0;
+	printf("Informe o CPF do cliente\n");
+	scanf("%d", &cpf);
+
+	for(int i=0; i<lista->index; i++){
+		if(lista->dados[i].cpf == cpf){
+           position = i;
+		}
+	}
+
+    if(position=0){
+        return 0;
+    }
+
+    for(int i=position; i<=lista->index; i++){
+        lista->dados[i] = lista->dados[i+1];
+    }
+
+    lista->index--;
+    return 1;
+}
+
+
+
+

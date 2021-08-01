@@ -18,13 +18,19 @@ void CriarNovaLista(){
     if(lista == NULL){
         lista = criarLista();
         printf("Lista criada com  Sucesso. %d", &lista); //#REMOVER endereco
-        Finaliza();
     }else{
         printf("Ja existe lista de Clientes criada.");
-        Finaliza();
     }
 }
 
+
+/*
+    TO-DO do que precisa fazer
+    -> criar  validacoes para nao deixar gravar id e cpf duplicados
+
+
+
+*/
 int main(){
     int opcao;
     int position;
@@ -32,6 +38,9 @@ int main(){
 
     //Cliente usado para busca
     Cliente clienteBusca;
+
+    //Cliente usado para inclusao
+    Cliente cliente;
 
     Cliente c1;
 	strcpy(c1.nome, "Joao");
@@ -59,8 +68,8 @@ int main(){
         printf("1 - Inserir novo cliente no FINAL da lista;\n");   //OK
         printf("2 - Inserir novo cliente no INICIO da lista;\n"); //OK
         printf("3 - Inserir novo cliente em uma posicao especifica;\n");  //OK
-        printf("4 - Buscar cliente pelo CPF;\n");
-        printf("5 - Remover cliente pelo CPF;\n");
+        printf("4 - Buscar cliente pelo CPF;\n");   //OK
+        printf("5 - Remover cliente pelo CPF;\n");  //OK
         printf("6 - Imprimir todos os clientes da lista;\n"); //OK
         printf("7 - Imprimir tamanho da lista;\n"); //OK
         printf("8 - Imprimir dados de um cliente especifico;\n"); //OK
@@ -69,6 +78,7 @@ int main(){
         printf("11 - Sair.\n");
         scanf("%d", &opcao);
 
+        //Nao deixa executar nenhuma funcao sem ter lista cria
         if(lista == NULL && opcao != 0){
             printf("Atencao! Sistema nao possui uma lista de clientes.");
             opcao = -1;
@@ -78,23 +88,41 @@ int main(){
         switch(opcao){
             case 0:
                 CriarNovaLista();
+                Finaliza();
                 break;
             case 1:
-                inserirCliente(lista, c1, -1);
-                inserirCliente(lista, c2, -1);
-
+                //INSERIR NO FINAL
+                inserirCliente(lista, -1);
+                Finaliza();
                 break;
             case 2:
-                inserirCliente(lista, c3, 0);
+                //INSERIR NO INICIO
+                inserirCliente(lista, 0);
+                Finaliza();
                 break;
             case 3:
+                //INSERIR EM POSICAO ESPECIFICA
                 printf("Qual a posicao deseja inserir o cliente: \n");
                 scanf("%d", &position);
-                inserirCliente(lista, c4, position);
+                inserirCliente(lista, position);
+                Finaliza();
                 break;
             case 4:
+                if(buscarClientePorCpf(lista, &clienteBusca) > 0){
+                    printf("Cliente encontrado:");
+                    imprimirDadosCliente(&clienteBusca);
+                }else{
+                    printf("Cliente nao encontrado.");
+                }
+                Finaliza();
                 break;
             case 5:
+                if(removerDadosCliente(lista, &clienteBusca) > 0){
+                    printf("Cliente removido:\n");
+                }else{
+                    printf("Cliente nao encontrado.");
+                }
+                Finaliza();
                 break;
             case 6:
                 if((lista->index) > 0){
