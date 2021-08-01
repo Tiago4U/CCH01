@@ -34,33 +34,11 @@ void CriarNovaLista(){
 int main(){
     int opcao;
     int position;
-    //printf("teste");
-
     //Cliente usado para busca
     Cliente clienteBusca;
 
     //Cliente usado para inclusao
     Cliente cliente;
-
-    Cliente c1;
-	strcpy(c1.nome, "Joao");
-	c1.id = 1;
-	c1.cpf = 123;
-
-	Cliente c2;
-	strcpy(c2.nome, "Maria");
-	c2.id = 2;
-	c2.cpf = 345;
-
-    Cliente c3;
-	strcpy(c3.nome, "Ze");
-	c3.id = 3;
-	c3.cpf = 111;
-
-    Cliente c4;
-	strcpy(c4.nome, "Tiago");
-	c4.id = 4;
-	c4.cpf = 222;
 
     do{
         printf("Selecione uma das opcoes abaixo:\n");
@@ -117,7 +95,7 @@ int main(){
                 Finaliza();
                 break;
             case 5:
-                if(removerDadosCliente(lista, &clienteBusca) > 0){
+                if(removerDadosCliente(lista) > 0){
                     printf("Cliente removido:\n");
                 }else{
                     printf("Cliente nao encontrado.");
@@ -141,16 +119,24 @@ int main(){
                 Finaliza();
                 break;
             case 8:
-                if(buscarClientePorCpf(lista, &clienteBusca) > 0){
-
-                }else{
+                if(buscarClientePorCpf(lista, &clienteBusca) == 0){
                     printf("Cliente nao encontrado.");
                 }
                 Finaliza();
                 break;
             case 9:
+                if(buscarPosicaoCliente(lista) == 0){
+                    printf("Posicao nao possui cliente cadastrado.");
+                }
+                Finaliza();
                 break;
             case 10:
+                if(alterarCliente(lista) > 0){
+                    printf("Dados alterados com sucesso.");
+                }else{
+                    printf("Posicao nao possui cliente cadastrado.");
+                }
+                Finaliza();
                 break;
             case -1:
                 //escape de exeucao

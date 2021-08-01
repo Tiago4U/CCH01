@@ -100,10 +100,11 @@ int buscarClientePorCpf(ListaSequencialClientes* lista, Cliente* clienteRetornad
 }
 
 //Remover dados cliente
-int removerDadosCliente(ListaSequencialClientes* lista, Cliente* cliente){
+int removerDadosCliente(ListaSequencialClientes* lista){
 	int cpf, position=0;
 	printf("Informe o CPF do cliente\n");
 	scanf("%d", &cpf);
+
 
 	for(int i=0; i<lista->index; i++){
 		if(lista->dados[i].cpf == cpf){
@@ -123,6 +124,43 @@ int removerDadosCliente(ListaSequencialClientes* lista, Cliente* cliente){
     return 1;
 }
 
+int buscarPosicaoCliente(ListaSequencialClientes* lista){
+	int position=0;
+	printf("Informe a posicao do cliente: \n");
+	scanf("%d", &position);
 
+    if(lista->index-1 < position){
+        return 0;
+    }
+
+    imprimirDadosCliente(&lista->dados[position]);
+    return 1;
+}
+
+int alterarCliente(ListaSequencialClientes* lista){
+	int position=0;
+	printf("Informe a posicao do cliente: \n");
+	scanf("%d", &position);
+
+    if(lista->index-1 < position){
+        return 0;
+    }
+
+    if(&lista->dados[position] != NULL){
+        char nome[150];
+        printf("Informe o novo Nome:\n");
+        scanf("%s", nome);
+        strcpy(lista->dados[position].nome, nome);
+
+        printf("Informe o novo ID:\n");
+        scanf("%d", &lista->dados[position].id);
+
+        printf("Informe o novo CPF:\n");
+        scanf("%d", &lista->dados[position].cpf);
+    }else{
+        return 0;
+    }
+    return 1;
+}
 
 
