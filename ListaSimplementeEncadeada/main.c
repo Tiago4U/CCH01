@@ -36,21 +36,21 @@ int main()
     do{
         printf("Selecione uma das opcoes abaixo:\n");
         printf("0 - Criar nova lista simplesmente encadeada;\n");  //OK
-        printf("1 - Inserir novo cliente no FINAL da lista;\n");   //OK
+        //printf("1 - Inserir novo cliente no FINAL da lista;\n");   //OK
         printf("2 - Inserir novo cliente no INICIO da lista;\n"); //OK
-        printf("3 - Inserir novo cliente em uma posicao especifica;\n");  //OK
-        printf("4 - Buscar cliente pelo CPF;\n");   //OK
-        printf("5 - Remover cliente pelo CPF;\n");  //OK
+        //printf("3 - Inserir novo cliente em uma posicao especifica;\n");  //OK
+        //printf("4 - Buscar cliente pelo CPF;\n");   //OK
+        //printf("5 - Remover cliente pelo CPF;\n");  //OK
         printf("6 - Imprimir todos os clientes da lista;\n"); //OK
-        printf("7 - Imprimir tamanho da lista;\n"); //OK
-        printf("8 - Imprimir dados de um cliente especifico;\n"); //OK
-        printf("9 - Buscar posicao do cliente na lista;\n");
-        printf("10 - Editar informacoes de acordo com a posicao do cliente;\n");
+        // printf("7 - Imprimir tamanho da lista;\n"); //OK
+        //printf("8 - Imprimir dados de um cliente especifico;\n"); //OK
+        //printf("9 - Buscar posicao do cliente na lista;\n");
+        //printf("10 - Editar informacoes de acordo com a posicao do cliente;\n");
         printf("11 - Sair.\n");
         scanf("%d", &opcao);
 
         //Nao deixa executar nenhuma funcao sem ter lista cria
-        if(listaLSE == NULL && opcao != 0){
+        if(listaLSE == NULL && opcao != 0 && opcao != 11){
             printf("Atencao! Sistema nao possui uma lista de clientes.");
             opcao = -1;
             Finaliza();

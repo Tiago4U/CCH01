@@ -65,36 +65,31 @@ int inserirCliente(LSE* listaLSE, int posicao){
 	//para informar a posicao utilizamos -1 para inserir no final, 0 para inserir no inicio e demais valores para posicao
 	//Inserir na ultima posicao
 	if(posicao == -1 ){
-        /*
+
         // inserir no final da lista
-            NodoLSE* novo = (NodoLSE*)malloc(sizeof(NodoLSE));
-            novo->cliente = clienteNovo;
-            novo->proximo = NULL;
+        NodoLSE* novo = (NodoLSE*)malloc(sizeof(NodoLSE));
+        novo->cliente = clienteNovo;
+        novo->proximo = NULL;
 
-            if(listaLSE->inicio == NULL) {
-                listaLSE->inicio = novo;
-                listaLSE->fim = novo;
-            } else {
-                listaLSE->fim->proximo = novo;
-                listaLSE->fim = novo;
+        if(listaLSE->inicio == NULL){
+            listaLSE->inicio = novo;
+        } else {
+            novo = listaLSE->inicio;
+            while(novo->proximo != NULL){
+                novo = novo->proximo;
             }
-            listaLSE->tam++;
-        }*/
+        }
 
-       /* printf("Inserindo cliente na posicao: %d\n", listaLSE->index);
-        listaLSE->dados[listaLSE->index] = clienteNovo;
-        listaLSE->index++;
         return 1;
-	}
-	//Inserir no inicio
-	else if(posicao == 0){*/
+	}else if(posicao == 0){
 	    printf("Inserindo cliente na posicao: 0\n");
 
         NodoLSE* novo = (NodoLSE*)malloc(sizeof(NodoLSE));
         novo->cliente = clienteNovo;
         novo->proximo = listaLSE->inicio;
         listaLSE->inicio = novo;
-        return 1;/*
+        return 1;}
+        /*
 	}else{
         printf("Inserindo cliente na posicao: %d\n", posicao);
 
@@ -107,7 +102,6 @@ int inserirCliente(LSE* listaLSE, int posicao){
         listaLSE->index++;
         return 1;
 	}*/
-}
 }
 
 
