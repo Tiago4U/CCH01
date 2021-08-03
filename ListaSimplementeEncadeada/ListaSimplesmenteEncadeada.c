@@ -105,13 +105,6 @@ int inserirCliente(LSE* listaLSE, int posicao){
 }
 
 
-int buscarLSE(LSE* lista, int cpf, Cliente* clienteEncontrado)
-{
-    //implementar
-    return 0;
-}
-
-/*
 void removerLSE(LSE* lista, int cpf)
 {
     if(lista != NULL){
@@ -122,10 +115,10 @@ void removerLSE(LSE* lista, int cpf)
             aux = aux->proximo;
         }
         if(aux == NULL){
-            printf("Erro: Cliente não encontrado\n");
+            printf("Erro: Cliente nao encontrado\n");
         }
         if(aux == lista->inicio){
-            printf("remover o primeiro\n");
+            //printf("remover o primeiro\n");
             lista->inicio = aux->proximo;
         }
         else{
@@ -134,10 +127,10 @@ void removerLSE(LSE* lista, int cpf)
         free(aux);
     }
     else{
-        printf("Erro: Lista não inicializada\n");
+        printf("Erro: Lista nao inicializada\n");
     }
 }
-*/
+
 
 void imprimirDadosLSE(LSE* lista)
 {
@@ -145,7 +138,7 @@ void imprimirDadosLSE(LSE* lista)
     {
         if(lista->inicio == NULL)
         {
-            printf("Erro, lista não foi inicilizada");
+            printf("Erro, lista nao foi inicilizada");
         }
 
         NodoLSE* aux = lista->inicio;
@@ -157,7 +150,7 @@ void imprimirDadosLSE(LSE* lista)
     }
     else
     {
-        printf("Erro, lista não foi inicilizada");
+        printf("Erro, lista nao foi inicilizada");
     }
     printf("\n\n");
 }

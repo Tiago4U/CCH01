@@ -25,8 +25,10 @@ void Finaliza(){
 
 int main()
 {
+    int cpf;
     int opcao;
     int position;
+    int tamanho=0;
     //Cliente usado para busca
     Cliente clienteBusca;
 
@@ -40,9 +42,9 @@ int main()
         printf("2 - Inserir novo cliente no INICIO da lista;\n"); //OK
         //printf("3 - Inserir novo cliente em uma posicao especifica;\n");  //OK
         //printf("4 - Buscar cliente pelo CPF;\n");   //OK
-        //printf("5 - Remover cliente pelo CPF;\n");  //OK
+        printf("5 - Remover cliente pelo CPF;\n");  //OK
         printf("6 - Imprimir todos os clientes da lista;\n"); //OK
-        // printf("7 - Imprimir tamanho da lista;\n"); //OK
+        printf("7 - Imprimir tamanho da lista;\n"); //OK
         //printf("8 - Imprimir dados de um cliente especifico;\n"); //OK
         //printf("9 - Buscar posicao do cliente na lista;\n");
         //printf("10 - Editar informacoes de acordo com a posicao do cliente;\n");
@@ -64,11 +66,13 @@ int main()
             case 1:
                 //INSERIR NO FINAL
                 inserirCliente(listaLSE, -1);
+                tamanho++;
                 Finaliza();
                 break;
             case 2:
                 //INSERIR NO INICIO
                 inserirCliente(listaLSE, 0);
+                tamanho++;
                 Finaliza();
                 break;
             case 3:
@@ -88,20 +92,18 @@ int main()
                 Finaliza();*/
                 break;
             case 5:
-                /*if(removerDadosCliente(lista) > 0){
-                    printf("Cliente removido:\n");
-                }else{
-                    printf("Cliente nao encontrado.");
-                }
-                Finaliza();*/
+                printf("Informe o CPF do cliente\n");
+                scanf("%d", &cpf);
+                removerLSE(listaLSE, cpf);
+                Finaliza();
                 break;
             case 6:
                 imprimirDadosLSE(listaLSE);
                 Finaliza();
                 break;
             case 7:
-                /*printf("O tamanho da lista e de %d.", lista->index);
-                Finaliza();*/
+                printf("O tamanho da lista e de %d.", tamanho);
+                Finaliza();
                 break;
             case 8:
                 /*if(buscarClientePorCpf(lista, &clienteBusca) == 0){
