@@ -2,12 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 //#include "cliente.h"
-//#include "listaEstaticaSequencial.h"
 #include "listaSimplesmenteEncadeada.c"
-//#include "listaDuplamenteEncadeada.h"
-//#include "leitorArquivo.h"
 
-LSE* listaLSE;
+NodoLSE* listaLSE;
 
 //Criacao de Lista de usuarios
 void CriarNovaLista(){
@@ -38,9 +35,9 @@ int main()
     do{
         printf("Selecione uma das opcoes abaixo:\n");
         printf("0 - Criar nova lista simplesmente encadeada;\n");  //OK
-        //printf("1 - Inserir novo cliente no FINAL da lista;\n");   //OK
+        printf("1 - Inserir novo cliente no FINAL da lista;\n");   //OK
         printf("2 - Inserir novo cliente no INICIO da lista;\n"); //OK
-        //printf("3 - Inserir novo cliente em uma posicao especifica;\n");  //OK
+        printf("3 - Inserir novo cliente em uma posicao especifica;\n");  //OK
         //printf("4 - Buscar cliente pelo CPF;\n");   //OK
         printf("5 - Remover cliente pelo CPF;\n");  //OK
         printf("6 - Imprimir todos os clientes da lista;\n"); //OK
@@ -71,16 +68,16 @@ int main()
                 break;
             case 2:
                 //INSERIR NO INICIO
-                inserirCliente(listaLSE, 0);
+                inserirCliente(listaLSE, 1);
                 tamanho++;
                 Finaliza();
                 break;
             case 3:
-               /* //INSERIR EM POSICAO ESPECIFICA
+                //INSERIR EM POSICAO ESPECIFICA
                 printf("Qual a posicao deseja inserir o cliente: \n");
                 scanf("%d", &position);
-                inserirCliente(lista, position);
-                Finaliza();*/
+                inserirCliente(listaLSE, position);
+                Finaliza();
                 break;
             case 4:
                 /*if(buscarClientePorCpf(lista, &clienteBusca) > 0){
@@ -94,7 +91,7 @@ int main()
             case 5:
                 printf("Informe o CPF do cliente\n");
                 scanf("%d", &cpf);
-                removerLSE(listaLSE, cpf);
+                //removerLSE(listaLSE, cpf);
                 Finaliza();
                 break;
             case 6:
