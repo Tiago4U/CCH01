@@ -6,3 +6,4 @@ typedef struct{
 }Cliente;
 
 void imprimirDadosCliente(Cliente* c);
+//Cliente *alocarCliente();
