@@ -83,53 +83,6 @@ int main(){
 
 
     /*
-    const char *FORMAT_SAIDA_OPERACOES = "LES,%s,%d\n";
-    const char *FORMAT_LOG_CONTEUDO_LIST = "LES,%d,CPF:%d\n";
-
-
-
-    void conteudoLista(LES *lista) {
-    FILE *pf;
-
-    pf = fopen("log-conteudo-lista.txt", "a");
-
-    if (pf == NULL) {
-        printf("Error!");
-
-        return;
-    } else {
-
-        int posicao = 1;
-
-        for (int i = 0; i < lista->index; i++) {
-            fprintf(pf, FORMAT_LOG_CONTEUDO_LIST, posicao, lista->dados[i].cpf);
-
-            posicao++;
-        }
-
-        fclose(pf);
-    }
-}
-*/
-    //while(!feof(arq)){
-        //fscanf(arq, "%[a-zA-Z_],", funcao);
-        //printf("\n%s\n", funcao);
-        //if(strcmp(funcao, "inserir_inicio") == 0){
-        //printf("pf%d\n", arq);
-
-
-        //printf("pf%d\n", arq);
-        //fscanf(arq, "%[a-zA-Z_],%d,%[a-zA-Z '-],%d", funcao, &clienteImportacao->id, clienteImportacao->nome, &clienteImportacao->cpf);
-        //imprimirDadosCliente(clienteImportacao);
-        //inserirInicio(listaLSE, clienteImportacao);
-           // i++;
-       // }
-    //}
-
-
-
-
-    /*
     fscanf(arq, "%d", clienteImportacao->id);
     fscanf(arq, "%[a-zA-Z]", clienteImportacao->nome);
     fscanf(arq, "%d", clienteImportacao->cpf);
