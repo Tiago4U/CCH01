@@ -6,6 +6,7 @@
 #include "listaSimplesmenteEncadeada.c"
 
 NodoLSE* listaLSE;
+FILE *arq;
 
 //Criacao de Lista de usuarios
 void CriarNovaLista(){
@@ -17,64 +18,99 @@ void CriarNovaLista(){
     }
 }
 
+void operacao(char *funcao, int qtd) {
+    FILE *arq;
+    arq = fopen("log-operacoes.txt", "a");
+    if (arq != NULL) {
+        printf("%s\n", funcao);
+        fprintf(arq, "LSE,%s,%d\n", funcao, qtd);
+    }
+    fclose(arq);
+}
+
+
 
 int main(){
-
-
-    FILE *arq;
     char funcao[100];
-    char *result;
-    int i;
+
     // Abre um arquivo TEXTO para LEITURA
     arq = fopen("operacoes.txt", "r");
     if (arq == NULL){
      printf("Problemas na abertura do arquivo\n");
      return;
     }
-    i = 1;
 
     CriarNovaLista();
     Cliente *clienteImportacao = alocarCliente();
 
     char buffer[300];
-    int contador = 0;
     int cpf=0;
 
     while(!feof(arq)){
         fgets(buffer, 300, arq);
 
-        if(contador == 1100){
-            break;
-        }
-
-        contador++;
         buffer[strlen(buffer) - 1] = '\0';
         sscanf(buffer, "%[a-zA-Z_]", funcao);
         if(strcmp(funcao, "inserir_inicio")==0){
             Cliente *clienteImportacao = alocarCliente();
             sscanf(buffer, "%[a-zA-Z_],%d,%[a-zA-Z '_],%d", funcao, &clienteImportacao->id, clienteImportacao->nome, &clienteImportacao->cpf);
             inserirInicio(listaLSE, clienteImportacao);
-        }else if(strcmp(funcao, "inserir_inicio")==0){
+            operacao("inserir_inicio", 1);
+        }else if(strcmp(funcao, "inserir_final")==0){
             Cliente *clienteImportacao = alocarCliente();
             sscanf(buffer, "%[a-zA-Z_],%d,%[a-zA-Z '_],%d", funcao, &clienteImportacao->id, clienteImportacao->nome, &clienteImportacao->cpf);
             inserirFinal(listaLSE, clienteImportacao);
+            operacao("inserir_final", 1);
         }else if(strcmp(funcao, "remover")==0){
             sscanf(buffer, "%[a-zA-Z_ ],%d", funcao, &cpf);
             removerCliente(listaLSE, cpf);
+            operacao("remover", 1);
         }else if(strcmp(funcao, "buscar")==0){
             sscanf(buffer, "%[a-zA-Z_ ],%d", funcao, &cpf);
             Cliente* clientePesquisa = alocarCliente();
             clientePesquisa = buscarCliente(listaLSE->inicio, cpf);
+            operacao("buscar", 1);
             if(clientePesquisa!=NULL){
-                imprimirDadosCliente(clientePesquisa);
+                //imprimirDadosCliente(clientePesquisa);
             }else{
                 printf("nao encontrado\n");
             }
         }else if(strcmp(funcao, "obter_tamanho_lista")==0){
             imprimirTamanho(listaLSE);
+            operacao("obter_tamanho_lista", 1);
         }
     }
 
+
+    /*
+    const char *FORMAT_SAIDA_OPERACOES = "LES,%s,%d\n";
+    const char *FORMAT_LOG_CONTEUDO_LIST = "LES,%d,CPF:%d\n";
+
+
+
+    void conteudoLista(LES *lista) {
+    FILE *pf;
+
+    pf = fopen("log-conteudo-lista.txt", "a");
+
+    if (pf == NULL) {
+        printf("Error!");
+
+        return;
+    } else {
+
+        int posicao = 1;
+
+        for (int i = 0; i < lista->index; i++) {
+            fprintf(pf, FORMAT_LOG_CONTEUDO_LIST, posicao, lista->dados[i].cpf);
+
+            posicao++;
+        }
+
+        fclose(pf);
+    }
+}
+*/
     //while(!feof(arq)){
         //fscanf(arq, "%[a-zA-Z_],", funcao);
         //printf("\n%s\n", funcao);
@@ -110,6 +146,7 @@ int main(){
 
     //printf("Linha %d : %s",i,Linha);
 
+    /*
     Cliente *cliente1 = alocarCliente();
     Cliente *cliente2 = alocarCliente();
     Cliente *cliente3 = alocarCliente();
@@ -142,14 +179,7 @@ int main(){
     buscarClienteCPF(listaLSE, 333);
 
     imprimirTamanho(listaLSE);
-
-    //imprimirDadosLSE(listaLSE);
-
-    //imprimirDadosLSE(listaLSE);
-//    criarClienteAutomatico()
-
-
-
+*/
     /*
     do{
         printf("Selecione uma das opcoes abaixo:\n");

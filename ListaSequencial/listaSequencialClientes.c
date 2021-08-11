@@ -12,6 +12,11 @@ void imprimirDadosCliente(Cliente* cliente){
 	printf("CPF: %d\n", cliente->cpf);
 }
 
+Cliente *alocarCliente(){
+    Cliente *cliente = (Cliente*)malloc(sizeof(Cliente));
+    return cliente;
+}
+
 int criarCliente(Cliente* cliente){
     char nome[150];
     printf("Informe o Nome:\n");
@@ -26,6 +31,7 @@ int criarCliente(Cliente* cliente){
 
     return 1;
 }
+
 
 //Criar lista de usuarios
 ListaSequencialClientes* criarLista(){

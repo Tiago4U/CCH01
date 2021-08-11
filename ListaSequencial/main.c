@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "cliente.c"
+#include <conio.h>
 
 //Lista sequencial
 #include "listaSequencialClientes.c"
@@ -23,14 +23,72 @@ void CriarNovaLista(){
     }
 }
 
+void operacao(char *funcao, int qtd) {
+    FILE *arq;
+    arq = fopen("log-operacoes.txt", "a");
+    if (arq != NULL) {
+        printf("%s", funcao);
+        fprintf(arq, "LES,%s,%d\n", funcao, qtd);
+    }
+    fclose(arq);
+}
 
-/*
-    TO-DO do que precisa fazer
-    -> criar  validacoes para nao deixar gravar id e cpf duplicados
+void inicializar(){
+    char funcao[100];
+    FILE *arq;
+    // Abre um arquivo TEXTO para LEITURA
+    arq = fopen("operacoes.txt", "r");
+    if (arq == NULL){
+     printf("Problemas na abertura do arquivo\n");
+     return;
+    }
+
+    CriarNovaLista();
+    Cliente *clienteImportacao = alocarCliente();
+
+    char buffer[300];
+    int cpf=0;
+
+    while(!feof(arq)){
+        fgets(buffer, 300, arq);
+
+        buffer[strlen(buffer) - 1] = '\0';
+        sscanf(buffer, "%[a-zA-Z_]", funcao);
+
+        if(strcmp(funcao, "inserir_inicio")==0){
+            Cliente *clienteImportacao = alocarCliente();
+            sscanf(buffer, "%[a-zA-Z_],%d,%[a-zA-Z '_],%d", funcao, &clienteImportacao->id, clienteImportacao->nome, &clienteImportacao->cpf);
+            inserirCliente(clienteImportacao, 1);
+            operacao("inserir_inicio", 1);
+        }else if(strcmp(funcao, "inserir_final")==0){
+            Cliente *clienteImportacao = alocarCliente();
+            sscanf(buffer, "%[a-zA-Z_],%d,%[a-zA-Z '_],%d", funcao, &clienteImportacao->id, clienteImportacao->nome, &clienteImportacao->cpf);
+            inserirCliente(clienteImportacao, -1);
+            operacao("inserir_final", 1);
+        }else if(strcmp(funcao, "remover")==0){
+            sscanf(buffer, "%[a-zA-Z_ ],%d", funcao, &cpf);
+            //removerCliente(listaLSE, cpf);
+            operacao("remover", 1);
+        }else if(strcmp(funcao, "buscar")==0){
+            sscanf(buffer, "%[a-zA-Z_ ],%d", funcao, &cpf);
+            Cliente* clientePesquisa = alocarCliente();
+            //clientePesquisa = buscarCliente(listaLSE->inicio, cpf);
+            operacao("buscar", 1);
+            if(clientePesquisa!=NULL){
+                imprimirDadosCliente(clientePesquisa);
+            }else{
+                printf("nao encontrado\n");
+            }
+        }else if(strcmp(funcao, "obter_tamanho_lista")==0){
+            //imprimirTamanho(listaLSE);
+            operacao("buscar", 1);
+        }
+    }
 
 
+}
 
-*/
+
 int main(){
     int opcao;
     int position;
@@ -39,6 +97,8 @@ int main(){
 
     //Cliente usado para inclusao
     Cliente cliente;
+
+    //inicializar();
 
     do{
         printf("Selecione uma das opcoes abaixo:\n");
